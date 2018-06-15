@@ -1,20 +1,14 @@
 pipeline {
   agent any
   stages {
-    stage('Preparación') {
+    stage('Preparacion') {
       steps {
         git(url: 'https://desreposrv.goldcar.es:8443/scm/ic/checkintablet_repo.git', branch: '*/develop')
-        withCredentials([string(credentialsId: 'KeyStorePassword', variable: 'KSTOREPWD')])
-        {
-          //Acciones a realizar con credenciales
-        }
-        withCredentials([string(credentialsId: 'KeyPassword', variable: 'KEYPWD')])
-        {
-          //Acciones a realizar con credenciales
-        }
+        withCredentials(bindings: [string(credentialsId: 'KeyStorePassword', variable: 'KSTOREPWD')])
+        withCredentials(bindings: [string(credentialsId: 'KeyPassword', variable: 'KEYPWD')])
       }
     }
-    stage('Ejecución') {
+    stage('Ejecucion') {
       steps {
         script {
           assemble
