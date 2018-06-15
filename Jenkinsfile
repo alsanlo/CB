@@ -16,7 +16,7 @@ pipeline {
         }
 
         sh '''gradle assemble
-gradle test'''
+              gradle test'''
       }
     }
     stage('Tratamiento') {
